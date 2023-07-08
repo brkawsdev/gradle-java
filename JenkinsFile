@@ -1,0 +1,15 @@
+pipeline{
+    agent any 
+    stages{
+        stage(" build stage"){
+            steps{
+                   script{
+                    withSonarQubeEnv(credentialsId: 'sonarqb') {
+                            sh 'chmod +x gradlew'
+                            sh './gradlew sonarqube'
+                    }       
+            }
+        }
+    }
+}
+}
